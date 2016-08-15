@@ -18,6 +18,7 @@ import model.entities.PresenceEnum;
 import model.entities.Reader;
 import model.jdbc.JdbcCopyDao;
 import model.logic.OperationWithBooks;
+import model.service.CopyService;
 import model.service.ReaderService;
 import view.PagesPath;
 
@@ -27,7 +28,8 @@ import view.PagesPath;
  */
 public class ShowOrderListCommand implements Command {
 	ReaderService readerService = ReaderService.getInstance();
-
+	CopyService copyService=CopyService.getInstance();
+	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -39,7 +41,7 @@ public class ShowOrderListCommand implements Command {
 			Map<Book, Boolean> bookAvailability = new HashMap<>();
 			for (Book b : orderedBooks) {
 				bookAvailability.put(b, false);
-				if (OperationWithBooks.countAvailableCopy(b.getId())>0) {
+				if (copyService.countAvailableCopy(b.getId())>0) {
 					bookAvailability.put(b, true);
 					break;
 				}

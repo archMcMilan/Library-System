@@ -15,6 +15,7 @@ import model.entities.Copy;
 import model.entities.Reader;
 import model.logic.OperationWithBooks;
 import model.service.CopyService;
+import model.service.ReaderService;
 import view.PagesPath;
 import view.View;
 
@@ -24,6 +25,7 @@ import view.View;
  */
 public class TakeBookCommandInArms implements Command{
 	CopyService copyService=CopyService.getInstance();
+	ReaderService readerService=ReaderService.getInstance();
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -31,8 +33,8 @@ public class TakeBookCommandInArms implements Command{
 		HttpSession session = request.getSession(true);
 		long readerId=Long.parseLong((String)session.getAttribute(CommandConstant.SESSION_USER_ATTR));
 		
-		Copy copy=OperationWithBooks.takeAvailableCopyInArms(bookId);
-		OperationWithBooks.distribute(copy, readerId);
+		Copy copy=copyService.takeAvailableCopyInArms(bookId);
+		readerService.distribute(copy, readerId);
 		request.setAttribute(CommandConstant.OPERATION_SUCCESS, true);
 		return PagesPath.USER_PAGE;
 	}

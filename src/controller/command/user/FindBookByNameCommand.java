@@ -15,6 +15,7 @@ import controller.command.CommandConstant;
 import model.entities.Book;
 import model.logic.OperationWithBooks;
 import model.service.BookService;
+import model.service.CopyService;
 import view.PagesPath;
 import view.View;
 
@@ -24,6 +25,7 @@ import view.View;
  */
 public class FindBookByNameCommand implements Command{
 	BookService bookService=BookService.getInstance();
+	CopyService copyService=CopyService.getInstance();
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -31,7 +33,7 @@ public class FindBookByNameCommand implements Command{
 		List<Book> result = bookService.findBookByName(name);
 		Map<Book,Integer> resultMap= new HashMap<>();
 		for(Book b:result){
-			resultMap.put(b, OperationWithBooks.countAvailableCopy(b.getId()));
+			resultMap.put(b, copyService.countAvailableCopy(b.getId()));
 		}
 		request.setAttribute(CommandConstant.PARAMETER_MAP, resultMap);
 		request.setAttribute(CommandConstant.FIND_AMOUNT, resultMap.size());

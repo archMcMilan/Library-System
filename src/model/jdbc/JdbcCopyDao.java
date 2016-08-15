@@ -10,9 +10,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import model.dao.CopyDao;
-import model.entities.Book;
 import model.entities.Copy;
-import model.entities.PresenceEnum;
 import model.logic.DateImplementor;
 import view.LoggerMessage;
 import view.View;

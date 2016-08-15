@@ -15,6 +15,8 @@ import model.entities.Copy;
 import model.entities.PresenceEnum;
 import model.entities.Reader;
 import model.logic.OperationWithBooks;
+import model.service.CopyService;
+import model.service.ReaderService;
 import view.PagesPath;
 import view.View;
 
@@ -24,14 +26,16 @@ import view.View;
  */
 public class GiveOrderedBookInArms implements Command{
 
+	CopyService copyService=CopyService.getInstance();
+	ReaderService readerService=ReaderService.getInstance();
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		long bookId = Long.parseLong(request.getParameter(CommandConstant.PARAMETER_BOOK_ID));
 		long readerId=Long.parseLong(request.getParameter(CommandConstant.PARAMETER_READER_ID));
 		
-		Copy copy=OperationWithBooks.takeAvailableCopyInArms(bookId);
-		Reader reader=OperationWithBooks.distribute(copy, readerId);
+		Copy copy=copyService.takeAvailableCopyInArms(bookId);
+		Reader reader=readerService.distribute(copy, readerId);
 		reader.removeBookInOrder(DaoFactory.getFactory().createBookDao().find(bookId));
 		DaoFactory.getFactory().createReaderDao().updateOrderBooks(reader);
 		request.setAttribute(CommandConstant.OPERATION_SUCCESS, true);

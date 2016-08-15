@@ -44,7 +44,11 @@
 					<c:out value="${books}"/><br/>
 				</c:forEach>
 			</table>
-			<input type="button" onclick="history.back();" value="<fmt:message key="back" bundle="${bundle}" />"/>
+			<a href="./Controller?command=GO_BACK">
+				<button>
+					<fmt:message key="back" bundle="${bundle}" />
+				</button>
+			</a>
 		</div>
 	</body>
 </html>

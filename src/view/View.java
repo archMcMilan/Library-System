@@ -47,15 +47,12 @@ public class View {
     
     public static final String GUEST_IN="guest";
     
-    public static final String PROP_PATH_EN="src/properties/message_en_US.properties";
-    public static final String PROP_PATH_UA="src/properties/message_uk_UA.properties";
+    public static final String PROP_PATH_EN="/Users/Artem/Documents/Education/EPAM/EE/Project4/src/properties/message_en_US.properties";
+    public static final String PROP_PATH_UA="/Users/Artem/Documents/Education/EPAM/EE/Project4/src/properties/message_uk_UA.properties";
     
-    public static final String HELLO_ADMIN_TEXT_UA="Привіт адміністратор ";
-    public static final String HELLO_GUEST_TEXT_UA="Привіт гість ";
-    public static final String HELLO_USER_TEXT_UA="Привіт користувач ";
-    public static final String HELLO_ADMIN_TEXT_EN="Hello admin ";
-    public static final String HELLO_GUEST_TEXT_EN="Hello guest ";
-    public static final String HELLO_USER_TEXT_EN="Hello user ";
+    public static final String HELLO_ADMIN="hello_admin";
+    public static final String HELLO_GUEST="hello_guest";
+    public static final String HELLO_USER="hello_user";
     
     
     

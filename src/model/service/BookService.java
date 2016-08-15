@@ -18,27 +18,27 @@ public class BookService {
 		return instance;
 	}
 	
-	private BookDao createBookDao(){
+	private BookDao createDaoBook(){
 		return DaoFactory.getFactory().createBookDao();
 	}
 
 	public List<Book> findAll() {
-		return createBookDao().findAll();
+		return createDaoBook().findAll();
 	}
 
 	public List<Book> findBookByCatalog(long id) {
-		return createBookDao().findBookByCatalogId(id);
+		return createDaoBook().findBookByCatalogId(id);
 	}
 
 	public List<Book> findBookByName(String name) {
-		return createBookDao().findBookByName(name);
+		return createDaoBook().findBookByName(name);
 	}
 	
 	public List<Book> findBookByAuthor(String surname) {
-		return createBookDao().findBookByAuthor(surname);
+		return createDaoBook().findBookByAuthor(surname);
 	}
 	
 	public Book findBookByCopy(long id){
-		return createBookDao().findBookByCopy(id);
+		return createDaoBook().findBookByCopy(id);
 	}
 }
