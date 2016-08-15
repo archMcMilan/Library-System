@@ -17,9 +17,6 @@
 	<body>
 		<div>
 			<h2><fmt:message key="message_critical_error" bundle="${bundle}" /></h2>
-			<fmt:message key="critical_error_description" bundle="${bundle}" />
-			<br/>
-			${critical_error }
 		</div>
 	</body>
 </html>

@@ -9,8 +9,6 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
-  <!-- Filters -->
   <filter>
     <display-name>CheckNotGuestInSessionFilter</display-name>
     <filter-name>CheckNotGuestInSessionFilter</filter-name>
@@ -32,7 +30,6 @@
     <filter-name>CheckNotGuestInSessionFilter</filter-name>
     <url-pattern>/jsp/UserBookHistory.jsp</url-pattern>
   </filter-mapping>
-  
   <filter>
     <display-name>EncodingFilter</display-name>
     <filter-name>EncodingFilter</filter-name>
@@ -43,6 +40,15 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
   
+  <filter>
+    <display-name>CheckCommandIsSessionFilter</display-name>
+    <filter-name>CheckCommandIsSessionFilter</filter-name>
+    <filter-class>controller.filter.CheckCommandIsSessionFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>CheckCommandIsSessionFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
   <filter>
     <display-name>CheckAdminInSessionFilter</display-name>
     <filter-name>CheckAdminInSessionFilter</filter-name>
@@ -56,7 +62,6 @@
     <filter-name>CheckAdminInSessionFilter</filter-name>
     <url-pattern>/jsp/BookList.jsp</url-pattern>
   </filter-mapping>
-  
   <filter>
     <display-name>CheckUserInSessionFilter</display-name>
     <filter-name>CheckUserInSessionFilter</filter-name>
@@ -70,14 +75,11 @@
     <filter-name>CheckUserInSessionFilter</filter-name>
     <url-pattern>/jsp/UserBookHistory.jsp</url-pattern>
   </filter-mapping>
-  
-  <!-- Custom tag -->
   <jsp-config>
     <taglib>
       <taglib-uri>mytag</taglib-uri>
       <taglib-location>/WEB-INF/custom.tld</taglib-location>
     </taglib>
-    
     <taglib>
       <taglib-uri>mytagDate</taglib-uri>
       <taglib-location>/WEB-INF/customDate.tld</taglib-location>

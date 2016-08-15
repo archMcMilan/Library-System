@@ -54,6 +54,7 @@ public class View {
     public static final String HELLO_GUEST="hello_guest";
     public static final String HELLO_USER="hello_user";
     
+    public static final String COMMAND="command";
     
     
 }
