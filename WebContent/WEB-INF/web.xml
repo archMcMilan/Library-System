@@ -68,7 +68,7 @@
   </filter-mapping>
   <filter-mapping>
     <filter-name>CheckUserInSessionFilter</filter-name>
-    <url-pattern>/jsp/BookHistory.jsp</url-pattern>
+    <url-pattern>/jsp/UserBookHistory.jsp</url-pattern>
   </filter-mapping>
   
   <!-- Custom tag -->

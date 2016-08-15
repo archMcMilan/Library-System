@@ -21,7 +21,8 @@ public class LogoutCommand implements Command{
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
-		session.setAttribute(CommandConstant.SESSION_USER_ATTR, null);
+		//session.setAttribute(CommandConstant.SESSION_USER_ATTR, null);
+		session.invalidate();
 		return PagesPath.HOME_PAGE;
 	}
 
