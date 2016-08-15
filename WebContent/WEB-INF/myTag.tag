@@ -1,1 +1,1 @@
-<jsp:directive.tag language="java" pageEncoding="ISO-8859-1"/>
+<jsp:directive.tag language="java" pageEncoding="UTF-8"/>

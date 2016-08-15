@@ -4,23 +4,23 @@
         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
         version="2.0">
   <tlib-version>2.1</tlib-version>
-  <short-name>mytag</short-name>
-  <uri>mytag</uri>
+  <short-name>mytagDate</short-name>
+  <uri>mytagDate</uri>
   <tag>
-    <name>CustomTag</name>
-    <tag-class>model.tag.CustomTagGreeting</tag-class>
+    <name>CustomTagDate</name>
+    <tag-class>model.tag.CustomTagDate</tag-class>
     <body-content>empty</body-content>
-    <attribute>
-      <name>user</name>
-      <required>true</required>
-      <rtexprvalue>true</rtexprvalue>
-      <type>java.lang.String</type>
-    </attribute>
     <attribute>
       <name>localization</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
       <type>java.lang.String</type>
+    </attribute>
+        <attribute>
+      <name>date</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.sql.Date</type>
     </attribute>
   </tag>
 </taglib>

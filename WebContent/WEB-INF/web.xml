@@ -77,5 +77,10 @@
       <taglib-uri>mytag</taglib-uri>
       <taglib-location>/WEB-INF/custom.tld</taglib-location>
     </taglib>
+    
+    <taglib>
+      <taglib-uri>mytagDate</taglib-uri>
+      <taglib-location>/WEB-INF/customDate.tld</taglib-location>
+    </taglib>
   </jsp-config>
 </web-app>

@@ -15,7 +15,7 @@
 		<title><fmt:message key="guest_page" bundle="${bundle}" /></title>
 	</head>
 	<body>
-		<h2><ct:CustonTag user="${name }" localization="${lang}"/></h2>
+		<h2><ct:CustomTag user="${name }" localization="${lang}"/></h2>
 		<p><a href="./Controller?command=LOGOUT">
 				<fmt:message key="logout" bundle="${bundle}" /></a>
 		</p>
@@ -70,6 +70,5 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<input type="button" onclick="history.back();" value="<fmt:message key="back" bundle="${bundle}" />"/>
 	</body>
 </html>

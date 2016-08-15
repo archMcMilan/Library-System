@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
+<%@ taglib uri="mytagDate" prefix="ctd" %>
 	<c:if test="${lang eq null}">
 		<c:set var="lang" value="${'en_US'}"/>
 	</c:if>
@@ -25,8 +26,8 @@
 				<c:forEach items="${readerMap}" var="entry">
 						<tr>
 							<td>${entry.value.name}</td>
-							<td>${entry.key.dateTaking}</td>
-							<td>${entry.key.dateBringBack}</td>
+							<td><ctd:CustomTagDate localization="${lang}" date="${entry.key.dateTaking }" /></td>
+							<td><ctd:CustomTagDate localization="${lang}" date="${entry.key.dateBringBack }" /></td>
 							<td>
 								<c:if test="${entry.key.dateFactBringBack eq null}">
 									<form method="post" action ="./Controller?command=BRING_BACK">
@@ -35,7 +36,7 @@
 									</form>
 								</c:if>
 								<c:if test="${entry.key.dateFactBringBack ne null}">
-									${entry.key.dateFactBringBack}
+									<ctd:CustomTagDate localization="${lang}" date="${entry.key.dateFactBringBack }" />
 								</c:if>					
 							</td> 
 						</tr>
@@ -44,6 +45,7 @@
 					<c:out value="${books}"/><br/>
 				</c:forEach>
 			</table>
+			<fmt:message key="date_format" bundle="${bundle}" /><br/><br/>
 			<a href="./Controller?command=GO_BACK">
 				<button>
 					<fmt:message key="back" bundle="${bundle}" />

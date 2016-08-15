@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="mytag" prefix="ct" %>
+<%@ taglib uri="mytagDate" prefix="ctd" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<c:if test="${lang eq null}">
 		<c:set var="lang" value="${'en_US'}"/>
@@ -16,7 +17,7 @@
 	</head>
 	<body>
 		<div>
-			<h2><ct:CustonTag user="${name }" localization="${lang}"/></h2>
+			<h2><ct:CustomTag user="${name }" localization="${lang}"/></h2>
 			<c:if test="${opSuccess eq true}">
 				<fmt:message key="successfully_operation" bundle="${bundle}"/><br/>
 			</c:if>
@@ -31,6 +32,7 @@
 			</form>
 			<table>
 				<c:if test="${mapOverdue.size() gt 0}">
+				<fmt:message key="date_format" bundle="${bundle}" /><br/><br/>
 					<tr>
 						<th><fmt:message key="reader_name" bundle="${bundle}" /></th>
 						<th><fmt:message key="book_name" bundle="${bundle}" /></th>
@@ -44,8 +46,8 @@
 					<tr>
 						<td>${entry.value.name}</td>
 						<td>${entry.key.book.name}</td>
-						<td>${entry.key.dateTaking}</td>
-						<td>${entry.key.dateBringBack}</td>
+						<td><ctd:CustomTagDate localization="${lang}" date="${entry.key.dateTaking }" /></td>
+						<td><ctd:CustomTagDate localization="${lang}" date="${entry.key.dateBringBack }" /></td>
 						<td>${entry.value.phone}</td>
 					</tr>
 				</c:forEach>

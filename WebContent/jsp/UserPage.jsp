@@ -4,7 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="mytag" prefix="ct" %>
-<script src="../js/my.js"></script>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<c:if test="${lang eq null}">
 		<c:set var="lang" value="${'en_US'}"/>
@@ -16,7 +15,7 @@
 		<title><fmt:message key="title_user_page" bundle="${bundle}" /></title>
 	</head>
 	<body>
-		<h2><ct:CustonTag user="${name }" localization="${lang}"/></h2>
+		<h2><ct:CustomTag user="${name }" localization="${lang}"/></h2>
 		<c:if test="${opSuccess eq true}">
 			<fmt:message key="successfully_operation" bundle="${bundle}"/><br/>
 		</c:if>
