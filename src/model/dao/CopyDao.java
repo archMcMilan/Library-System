@@ -25,7 +25,7 @@ public interface CopyDao extends AbstractDao<Copy>{
 	 * (might return null if haven't found any Copy's object with field "book" equals with input id),
 	 * otherwise return null 
 	 */
-    public abstract List<Copy> findCopyByBook(long id);
+    List<Copy> findCopyByBook(long id);
     
     /**
 	 * Method finds List of Copy's objects that overdue bring back date - mean that method return
@@ -34,6 +34,6 @@ public interface CopyDao extends AbstractDao<Copy>{
 	 * (might return null if haven't found any Copy's object with dateBringBack Date than current time),
 	 * otherwise return null 
 	 */
-    public abstract List<Copy> findCopyThatOverdue();
+    List<Copy> findCopyThatOverdue();
     
 }

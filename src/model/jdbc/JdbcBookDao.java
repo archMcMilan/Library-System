@@ -333,7 +333,48 @@ public class JdbcBookDao extends JdbcAbstractDao<Book> implements BookDao {
 		return null;
 	}
 
+	@Override
+	public List<Book> findAvailableBooksByCatalog(long id) {
+		List<Book> books=new ArrayList<>();
+		try (PreparedStatement statement =connection.prepareStatement("SELECT * from Book WHERE id_book in "
+				+ "(select book from copy where data_fact_bring_back IS null group by book) and catalog=?")){
+			statement.setLong(1, id);
+            ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				books.add(init(rs));
+			}
+            
+			Logger.getLogger(getClass()).info(LoggerMessage.RETURN_OBJECT_FIND_BOOK_BY_CATALOG+
+					books.size()+" "+id);
+			
+			return books;
+		} catch (SQLException e) {
+			Logger.getLogger(getClass()).
+				error(LoggerMessage.UNSUCCESS_FIND_BOOK_BY_CATALOG+id);
+		}
+		return null;
 
+	}
 
+	@Override
+	public List<Book> findUnAvailableBooksByCatalog(long id) {
+		List<Book> books=new ArrayList<>();
+		try (PreparedStatement statement =connection.prepareStatement("SELECT * from Book WHERE catalog=? and id_book in "
+				+ "(select book from copy where data_fact_bring_back IS not null group by book)")){
+			statement.setLong(1, id);
+            ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				books.add(init(rs));
+			}
+			Logger.getLogger(getClass()).info(LoggerMessage.RETURN_OBJECT_FIND_BOOK_BY_CATALOG+
+					books.size()+" "+id);
+			return books;
+		} catch (SQLException e) {
+			Logger.getLogger(getClass()).
+				error(LoggerMessage.UNSUCCESS_FIND_BOOK_BY_CATALOG+id);
+		}
+		return null;
+
+	}
 
 }

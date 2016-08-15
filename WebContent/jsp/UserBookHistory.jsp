@@ -46,11 +46,9 @@
 				</c:forEach>
 			</table>
 			<fmt:message key="date_format" bundle="${bundle}" /><br/><br/>
-			<a href="./Controller?command=GO_BACK">
-				<button>
+			<button onclick="location.href='./Controller?command=GO_BACK_USER'">
 					<fmt:message key="back" bundle="${bundle}" />
-				</button>
-			</a>
+			</button>
 		</div>
 	</body>
 </html>

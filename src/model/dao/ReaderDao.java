@@ -23,7 +23,7 @@ public interface ReaderDao extends AbstractDao<Reader> {
 	 * @param pass int - hashCode of the input password value
 	 * @return Reader object if such object exist, otherwise return null 
 	 */
-	public abstract Reader findReaderByLoginAndPass(String login, int pass);
+	Reader findReaderByLoginAndPass(String login, int pass);
 	
 	/**
 	 * Method finds List of Copy's objects by Readers's object id - mean that method return
@@ -32,7 +32,7 @@ public interface ReaderDao extends AbstractDao<Reader> {
 	 * @return List of Copy's objects if method finds Reader's object with such id
 	 * (might return null if Reader's object field "copies" is empty), otherwise return null 
 	 */
-	public abstract List<Copy> findReaderCopies(long id);
+	List<Copy> findReaderCopies(long id);
 	
 	/**
 	 * Method update Reader's object copies - mean that this Reader's object field "copies" value deleted
@@ -40,7 +40,7 @@ public interface ReaderDao extends AbstractDao<Reader> {
 	 * an exception it will try to rollback through calling method rollbackTransaction() and write in logger about error 
 	 * @param Reader entity - object with new "copies" list
 	 */
-	public abstract void updateCopyList(Reader entity);
+	void updateCopyList(Reader entity);
 	
 	/**
 	 * Method update Reader's object orderBooks - mean that this Reader's object field "orderBooks" value deleted
@@ -48,7 +48,7 @@ public interface ReaderDao extends AbstractDao<Reader> {
 	 * an exception it will try to rollback through calling method rollbackTransaction() and write in logger about error 
 	 * @param Reader entity - object with new "orderBooks" list
 	 */
-	public abstract void updateOrderBooks(Reader entity);
+	 void updateOrderBooks(Reader entity);
 	
 	/**
 	 * Method finds List of Book's objects by Readers's object id - mean that method return
@@ -57,7 +57,7 @@ public interface ReaderDao extends AbstractDao<Reader> {
 	 * @return List of Book's objects if method finds Reader's object with such id
 	 * (might return null if Reader's object field "orderBooks" is empty), otherwise return null 
 	 */
-	public abstract List<Book> findOrderBookList(long id);
+	List<Book> findOrderBookList(long id);
 	
 	/**
 	 * Method finds Reader's object by Copy's object id - mean that finds such Reader's object,
@@ -65,5 +65,5 @@ public interface ReaderDao extends AbstractDao<Reader> {
 	 * @param id - Copy's object field "id" value
 	 * @return Reader object if such object exist, otherwise return null 
 	 */
-	public abstract Reader findReaderByCopy(long id);
+	 Reader findReaderByCopy(long id);
 }

@@ -47,42 +47,58 @@ public class CheckCommandInSessionFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		List<CommandList> adminCommands = new ArrayList<>();
-		adminCommands.add(CommandList.FIND_OVERDUE_COPIES);
-		adminCommands.add(CommandList.GIVE_BOOK_IN_ARMS);
-		adminCommands.add(CommandList.GIVE_BOOK_IN_HALL);
-		adminCommands.add(CommandList.SHOW_ORDER_LIST);
-		
-		List<CommandList> userCommands = new ArrayList<>();
-		userCommands.add(CommandList.BRING_BACK);
-		userCommands.add(CommandList.FIND_BOOK_BY_AUTHOR);
-		userCommands.add(CommandList.FIND_BOOK_BY_CATALOG);
-		userCommands.add(CommandList.FIND_BOOK_BY_NAME);
-		userCommands.add(CommandList.ORDER_BOOK);
-		userCommands.add(CommandList.READER_BOOKS);
-		userCommands.add(CommandList.TAKE_BOOK_IN_ARMS);
-		userCommands.add(CommandList.TAKE_BOOK_IN_HALL);
-
-		String commandName=request.getParameter(View.COMMAND);
-		if (((HttpServletRequest) request).getSession()
-				.getAttribute(CommandConstant.SESSION_USER_ATTR) == CommandConstant.PARAMETER_ADMIN) {
-			if(!adminCommands.contains(commandName)){
-				HttpServletResponse resp = (HttpServletResponse) response;
-				String redirect = ((HttpServletRequest) request).getContextPath() + PagesPath.HOME_PAGE;
-				resp.sendRedirect(redirect);
-				return;
-			}	
-		}else if (((HttpServletRequest) request).getSession()
-				.getAttribute(CommandConstant.SESSION_USER_ATTR) != null && ((HttpServletRequest) request).getSession()
-				.getAttribute(CommandConstant.SESSION_USER_ATTR) != CommandConstant.PARAMETER_ADMIN) {
-
-			if(!userCommands.contains(commandName)){
-				HttpServletResponse resp = (HttpServletResponse) response;
-				String redirect = ((HttpServletRequest) request).getContextPath() + PagesPath.HOME_PAGE;
-				resp.sendRedirect(redirect);
-				return;
-			}	
-		}
+//		List<CommandList> adminCommands = new ArrayList<>();
+//		adminCommands.add(CommandList.FIND_OVERDUE_COPIES);
+//		adminCommands.add(CommandList.GIVE_BOOK_IN_ARMS);
+//		adminCommands.add(CommandList.GIVE_BOOK_IN_HALL);
+//		adminCommands.add(CommandList.SHOW_ORDER_LIST);
+//		
+//		List<CommandList> userCommands = new ArrayList<>();
+//		userCommands.add(CommandList.BRING_BACK);
+//		userCommands.add(CommandList.FIND_BOOK_BY_AUTHOR);
+//		userCommands.add(CommandList.FIND_BOOK_BY_CATALOG);
+//		userCommands.add(CommandList.FIND_BOOK_BY_NAME);
+//		userCommands.add(CommandList.ORDER_BOOK);
+//		userCommands.add(CommandList.READER_BOOKS);
+//		userCommands.add(CommandList.TAKE_BOOK_IN_ARMS);
+//		userCommands.add(CommandList.TAKE_BOOK_IN_HALL);
+//		userCommands.add(CommandList.GO_BACK_USER);
+//
+//		List<CommandList> guestCommands = new ArrayList<>();
+//		guestCommands.add(CommandList.FIND_BOOK_BY_AUTHOR);
+//		guestCommands.add(CommandList.FIND_BOOK_BY_CATALOG);
+//		guestCommands.add(CommandList.FIND_BOOK_BY_NAME);
+//		guestCommands.add(CommandList.FIND_ALL_BOOKS);
+//		
+//		String commandName=request.getParameter(View.COMMAND);
+//		if (((HttpServletRequest) request).getSession()
+//				.getAttribute(CommandConstant.SESSION_USER_ATTR) == CommandConstant.PARAMETER_ADMIN) {
+//			if(!adminCommands.contains(commandName)){
+//				HttpServletResponse resp = (HttpServletResponse) response;
+//				String redirect = ((HttpServletRequest) request).getContextPath() + PagesPath.HOME_PAGE;
+//				resp.sendRedirect(redirect);
+//				return;
+//			}	
+//		}else if (((HttpServletRequest) request).getSession()
+//				.getAttribute(CommandConstant.SESSION_USER_ATTR) != null && ((HttpServletRequest) request).getSession()
+//				.getAttribute(CommandConstant.SESSION_USER_ATTR) != CommandConstant.PARAMETER_ADMIN) {
+//
+//			if(!userCommands.contains(commandName)){
+//				HttpServletResponse resp = (HttpServletResponse) response;
+//				String redirect = ((HttpServletRequest) request).getContextPath() + PagesPath.HOME_PAGE;
+//				resp.sendRedirect(redirect);
+//				return;
+//			}	
+//		}else if (((HttpServletRequest) request).getSession()
+//				.getAttribute(CommandConstant.SESSION_USER_ATTR) == null){
+//
+//			if(!guestCommands.contains(commandName)){
+//				HttpServletResponse resp = (HttpServletResponse) response;
+//				String redirect = ((HttpServletRequest) request).getContextPath() + PagesPath.HOME_PAGE;
+//				resp.sendRedirect(redirect);
+//				return;
+//			}	
+//		} 
 		chain.doFilter(request, response);
 	}
 

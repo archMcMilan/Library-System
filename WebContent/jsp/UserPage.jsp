@@ -92,5 +92,66 @@
 			</c:forEach>
 		</table>
 		
+		<!-- Added as an example -->
+		<table>
+			<c:if test="${booksListAvailable.size()+booksListUnAvailable.size() gt 0}">
+				<tr>
+					<th><fmt:message key="book_name" bundle="${bundle}" /></th>
+					<th><fmt:message key="publication_year" bundle="${bundle}" /></th>
+					<th><fmt:message key="pages_amount" bundle="${bundle}" /></th>
+					<th><fmt:message key="catalog" bundle="${bundle}" /></th>
+					<th><fmt:message key="author" bundle="${bundle}" /></th>
+				</tr>
+			</c:if>
+			
+			<c:if test="${booksListAvailable ne null }">
+				<c:if test="${booksListAvailable.size()+booksListUnAvailable.size() eq 0 }">
+					<fmt:message key="find_nothing" bundle="${bundle}" />
+				</c:if>
+			</c:if>
+			<c:forEach items="${booksListAvailable}" var="element">
+				<tr>
+					<td>${element.name}</td>
+					<td>${element.publicationYear}</td>
+					<td>${element.pagesAmount}</td>
+					<td>${element.catalog.name}</td>
+					<td>
+						<c:forEach var="author" items="${element.authors}">
+							${author.surname}
+						</c:forEach>
+					</td>
+					<td>
+						<form method="post" action ="./Controller?command=TAKE_BOOK_IN_ARMS" >
+							<input type="submit" value="<fmt:message key="take_it_in_arms" bundle="${bundle}" />"/>
+							<input type="hidden" name="book_id" value="${entry.key.id}" /> 
+						</form>
+						<form method="post" action ="./Controller?command=TAKE_BOOK_IN_HALL" >
+							<input type="submit" value="<fmt:message key="take_it_in_hall" bundle="${bundle}" />"/>
+							<input type="hidden" name="book_id" value="${entry.key.id}" /> 
+						</form>  
+					</td> 
+				</tr>
+			</c:forEach>
+			<c:forEach items="${booksListUnAvailable}" var="element">
+				<tr>
+					<td>${element.name}</td>
+					<td>${element.publicationYear}</td>
+					<td>${element.pagesAmount}</td>
+					<td>${element.catalog.name}</td>
+					<td>
+						<c:forEach var="author" items="${element.authors}">
+							${author.surname}
+						</c:forEach>
+					</td>
+					<td>
+						<form method="post" action ="./Controller?command=ORDER_BOOK" >
+							<input type="submit" value="<fmt:message key="order_it" bundle="${bundle}" />"/>
+							<input type="hidden" name="book_id" value="${entry.key.id}" />
+						</form>   
+					</td> 
+				</tr>
+			</c:forEach>
+		</table>
+		
 	</body>
 </html>

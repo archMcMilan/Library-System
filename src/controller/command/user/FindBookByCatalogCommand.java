@@ -27,23 +27,39 @@ import view.View;
 public class FindBookByCatalogCommand implements Command{
 	BookService bookService=BookService.getInstance();
 	CopyService copyService=CopyService.getInstance();
+//	@Override
+//	public String execute(HttpServletRequest request, HttpServletResponse response)
+//			throws ServletException, IOException {
+//		Long catalogId = Long.parseLong(request.getParameter(CommandConstant.PARAMETER_CATALOG));
+//		List<Book> result = bookService.findBookByCatalog(catalogId);
+//		Map<Book,Integer> resultMap= new HashMap<>();
+//		for(Book b:result){
+//			resultMap.put(b, copyService.countAvailableCopy(b.getId()));
+//		}
+//		request.setAttribute(CommandConstant.PARAMETER_MAP, resultMap);
+//		request.setAttribute(CommandConstant.FIND_AMOUNT, resultMap.size());
+//		HttpSession session = request.getSession();
+//		if(session.getAttribute(CommandConstant.SESSION_USER_ATTR)==null){
+//			return PagesPath.GUEST_PAGE;
+//		}else{
+//			return PagesPath.USER_PAGE;
+//		}
+//	}
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Long catalogId = Long.parseLong(request.getParameter(CommandConstant.PARAMETER_CATALOG));
-		List<Book> result = bookService.findBookByCatalog(catalogId);
-		Map<Book,Integer> resultMap= new HashMap<>();
-		for(Book b:result){
-			resultMap.put(b, copyService.countAvailableCopy(b.getId()));
-		}
-		request.setAttribute(CommandConstant.PARAMETER_MAP, resultMap);
-		request.setAttribute(CommandConstant.FIND_AMOUNT, resultMap.size());
+		List<Book> result = bookService.findAvailableBooksByCatalog(catalogId);
+		request.setAttribute("booksListAvailable", result);
+		result = bookService.findUnAvailableBooksByCatalog(catalogId);
+		request.setAttribute("booksListUnAvailable", result);
 		HttpSession session = request.getSession();
+		
 		if(session.getAttribute(CommandConstant.SESSION_USER_ATTR)==null){
 			return PagesPath.GUEST_PAGE;
 		}else{
 			return PagesPath.USER_PAGE;
 		}
 	}
-
 }

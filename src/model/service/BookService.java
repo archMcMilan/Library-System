@@ -41,4 +41,12 @@ public class BookService {
 	public Book findBookByCopy(long id){
 		return createDaoBook().findBookByCopy(id);
 	}
+
+	public List<Book> findAvailableBooksByCatalog(Long id) {
+		return createDaoBook().findAvailableBooksByCatalog(id);
+	}
+	
+	public List<Book> findUnAvailableBooksByCatalog(Long id) {
+		return createDaoBook().findUnAvailableBooksByCatalog(id);
+	}
 }
